@@ -5,7 +5,7 @@ let users = [
   { name: "Arathy", password: "123", role: "student", points: 80, history: [] },
   { name: "Faculty1", password: "admin", role: "faculty" }
 ];
-
+console.log(users);
 // Load from storage
 function loadUsers() {
   let data = localStorage.getItem("users");
