@@ -1,24 +1,21 @@
-
-
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Faculty Dashboard</title>
-  <link rel="stylesheet" href="style.css">
-</head>
 <body>
+<div class="container">
+  <h2>👨‍🏫 Faculty Dashboard</h2>
 
-<h2>Faculty Dashboard</h2>
+  <div class="card">
+    <h3>Assign Points</h3>
 
-<h3>Assign Points</h3>
-
-<form onsubmit="assignPoints(event)">
-  <input type="text" id="studentName" placeholder="Student Name"><br>
-  <input type="number" id="points" placeholder="Points"><br>
-  <button type="submit">Assign</button>
-</form>
+    <form onsubmit="assignPoints(event)">
+      <input type="text" id="studentName" placeholder="Student Name"><br><br>
+      <input type="number" id="points" placeholder="Points"><br><br>
+      <button type="submit">Assign</button>
+    </form>
+  </div>
+</div>
 
 <script src="app.js"></script>
-
 </body>
-</html>
+
+
+
+
