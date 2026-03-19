@@ -116,7 +116,14 @@ function assignPoints(e) {
   saveData();
   alert("Points Assigned!");
 }
- 
+function logout() {
+  localStorage.clear();
+  window.location.href = "login.html";
+}
+function showUser() {
+  let user = localStorage.getItem("user");
+  document.getElementById("userName").innerText = user;
+}
 
  
 
