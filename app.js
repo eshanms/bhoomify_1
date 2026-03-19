@@ -11,6 +11,9 @@ console.log(name,pass);
 function loadUsers() {
   let data = localStorage.getItem("users");
   if (data) users = JSON.parse(data);
+}else{
+  localStorage.setItem("users",JSON.stringify(users));
+  }
 }
 
 // Save users
