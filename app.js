@@ -40,13 +40,49 @@ function login(e) {
     window.location.href = "faculty.html";
   }
 }
+function initStudent() {
+  let name = localStorage.getItem("user");
+  document.getElementById("userName").innerText = name;
+
+  let user = users.find(u => u.name === name);
+
+  document.getElementById("points").innerText = user.points;
+
+  // Leaderboard
+  let list = document.getElementById("leaderboard");
+  users.filter(u => u.role === "student")
+       .sort((a,b) => b.points - a.points)
+       .forEach(u => {
+         let li = document.createElement("li");
+         li.innerText = u.name + " - " + u.points;
+         list.appendChild(li);
+       });
+
+  // Rewards
+  let rewards = [
+    { name: "Eco Badge", cost: 50 },
+    { name: "Sapling 🌱", cost: 100 }
+  ];
+
+  let div = document.getElementById("rewards");
+
+  rewards.forEach((r, i) => {
+    let btn = document.createElement("button");
+    btn.innerText = r.name + " (" + r.cost + ")";
+    btn.onclick = () => redeem(r);
+    div.appendChild(btn);
+  });
+
+  // History
+  let hist = document.getElementById("history");
+  user.history.forEach(h => {
+    let li = document.createElement("li");
+    li.innerText = h;
+    hist.appendChild(li);
+  });
 
 
-let rewards = [
-  { name: "Eco Badge", cost: 50 },
-  { name: "Plant Sapling 🌱", cost: 100 },
-  { name: "Certificate", cost: 150 }
-];
+
 
 // ===== Load Data =====
 function loadData() {
@@ -113,7 +149,20 @@ function redeemReward(index) {
     alert("Not enough points!");
   }
 }
+function redeem(reward) {
+  let name = localStorage.getItem("user");
+  let user = users.find(u => u.name === name);
 
+  if (user.points >= reward.cost) {
+    user.points -= reward.cost;
+    user.history.push("Redeemed: " + reward.name);
+
+    saveUsers();
+    location.reload();
+  } else {
+    alert("Not enough points!");
+  }
+}
 // ===== Assign Points (Faculty) =====
 function assignPoints(e) {
   e.preventDefault();
