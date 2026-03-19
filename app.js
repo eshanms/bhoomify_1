@@ -13,13 +13,3 @@ function login() {
     alert("Invalid login!");
     return;
   }
-
-
-   
-
-
-
-
-
-
-   
