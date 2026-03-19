@@ -14,7 +14,7 @@ function loadUsers() {
 }else{
   localStorage.setItem("users",JSON.stringify(users));
   }
-}
+
 
 // Save users
 function saveUsers() {
