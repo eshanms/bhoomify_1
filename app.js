@@ -6,7 +6,7 @@ let users = [
   { name: "Faculty1", password: "admin", role: "faculty" }
 ];
 console.log(users);
-console.log(name,pass);
+
 // Load from storage
 function loadUsers() {
   let data = localStorage.getItem("users");
@@ -27,12 +27,14 @@ function login(e) {
   loadUsers();
   let name = document.getElementById("username").value;
   let pass = document.getElementById("password").value;
-
+  console.log("Trying login:",name,pass);
+  console.log("Users:",users);
+  
   let user = users.find(u => u.name === name && u.password === pass);
 
   if (!user) {
     alert("Invalid login!");
-    return;
+    return false;
   }
 
   localStorage.setItem("user", user.name);
@@ -43,6 +45,7 @@ function login(e) {
   } else {
     window.location.href = "faculty.html";
   }
+  return false;
 }
 function initStudent() {
   let name = localStorage.getItem("user");
