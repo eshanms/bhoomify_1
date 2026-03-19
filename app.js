@@ -170,17 +170,19 @@ function assignPoints(e) {
   let name = document.getElementById("studentName").value;
   let points = parseInt(document.getElementById("points").value);
 
-  let student = leaderboardData.find(u => u.name === name);
+  let user = users.find(u => u.name === name && u.role === "student");
 
-  if (student) {
-    student.points += points;
+  if (user) {
+    user.points += points;
+    user.history.push("Earned " + points + " points");
+
+    saveUsers();
+    alert("Points assigned!");
   } else {
-    leaderboardData.push({ name, points });
+    alert("Student not found");
   }
-
-  saveData();
-  alert("Points Assigned!");
 }
+
 function logout() {
   localStorage.clear();
   window.location.href = "login.html";
