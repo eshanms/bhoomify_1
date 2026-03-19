@@ -20,7 +20,7 @@ function saveUsers() {
 // ===== LOGIN =====
 function login(e) {
   e.preventDefault();
-
+  loadUsers();
   let name = document.getElementById("username").value;
   let pass = document.getElementById("password").value;
 
