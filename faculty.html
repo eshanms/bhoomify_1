@@ -1,3 +1,8 @@
+<script>
+  if (localStorage.getItem("role") !== "faculty") {
+    window.location.href = "login.html";
+  }
+</script>
 <body>
 <div class="container">
   <h2>👨‍🏫 Faculty Dashboard</h2>
