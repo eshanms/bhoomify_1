@@ -6,19 +6,22 @@
 </head>
 <body>
 
-<h2>Login</h2>
+<div class="container">
+  <h2>🌱 BHOOMIFY Login</h2>
 
-<form onsubmit="login(event)">
-  <input type="text" id="username" placeholder="Username" required><br>
-  <input type="password" id="password" placeholder="Password" required><br>
+  <div class="card">
+    <form onsubmit="login(event)">
+      <input type="text" id="username" placeholder="Enter your name" required><br><br>
 
-  <select id="role">
-    <option value="student">Student</option>
-    <option value="faculty">Faculty</option>
-  </select><br>
+      <select id="role">
+        <option value="student">Student</option>
+        <option value="faculty">Faculty</option>
+      </select><br><br>
 
-  <button type="submit">Login</button>
-</form>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+</div>
 
 <script src="app.js"></script>
 </body>
