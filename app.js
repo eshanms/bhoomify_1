@@ -1,26 +1,46 @@
-//const API = "http://localhost:5000"; // change after deployment
+ // ===== USER (for demo) =====
+let currentUser = "Eshan";
 
-function login(e) {
-  e.preventDefault();
-
-  let role = document.getElementById("role").value;
-
-  if (role === "student") {
-    window.location.href = "student.html";
-  } else {
-    window.location.href = "faculty.html";
-  }
-}
-const leaderboardData = [
+// ===== Dummy Data =====
+let leaderboardData = [
   { name: "Eshan", points: 120 },
   { name: "Aneya", points: 95 },
-  { name: "Arathy", points: 80 },
-  { name: "Gokul", points: 70 }
+  { name: "Arathy", points: 80 }
 ];
-// Load leaderboard
+
+let rewards = [
+  { name: "Eco Badge", cost: 50 },
+  { name: "Plant Sapling 🌱", cost: 100 },
+  { name: "Certificate", cost: 150 }
+];
+
+// ===== Load Data =====
+function loadData() {
+  let data = localStorage.getItem("leaderboard");
+  if (data) {
+    leaderboardData = JSON.parse(data);
+  }
+}
+
+// ===== Save Data =====
+function saveData() {
+  localStorage.setItem("leaderboard", JSON.stringify(leaderboardData));
+}
+
+// ===== Show Points =====
+function showPoints() {
+  let user = leaderboardData.find(u => u.name === currentUser);
+  document.getElementById("points").innerText = user ? user.points : 0;
+}
+
+// ===== Leaderboard =====
 function loadLeaderboard() {
+  showPoints();
+
   let list = document.getElementById("leaderboard");
   list.innerHTML = "";
+
+  leaderboardData.sort((a, b) => b.points - a.points);
 
   leaderboardData.forEach(user => {
     let li = document.createElement("li");
@@ -29,14 +49,44 @@ function loadLeaderboard() {
   });
 }
 
-// Assign points
+// ===== Rewards =====
+function loadRewards() {
+  let div = document.getElementById("rewards");
+  div.innerHTML = "";
+
+  rewards.forEach((reward, index) => {
+    let btn = document.createElement("button");
+    btn.innerText = reward.name + " (" + reward.cost + " pts)";
+    btn.onclick = () => redeemReward(index);
+    div.appendChild(btn);
+  });
+}
+
+// ===== Redeem =====
+function redeemReward(index) {
+  let user = leaderboardData.find(u => u.name === currentUser);
+
+  if (!user) return;
+
+  let reward = rewards[index];
+
+  if (user.points >= reward.cost) {
+    user.points -= reward.cost;
+    alert("Redeemed: " + reward.name);
+    saveData();
+    loadLeaderboard();
+  } else {
+    alert("Not enough points!");
+  }
+}
+
+// ===== Assign Points (Faculty) =====
 function assignPoints(e) {
   e.preventDefault();
-  loadData();
+
   let name = document.getElementById("studentName").value;
   let points = parseInt(document.getElementById("points").value);
 
-  // Find student
   let student = leaderboardData.find(u => u.name === name);
 
   if (student) {
@@ -45,18 +95,10 @@ function assignPoints(e) {
     leaderboardData.push({ name, points });
   }
 
-  alert("Points Assigned!");
   saveData();
+  alert("Points Assigned!");
 }
-// Save data
-function saveData() {
-  localStorage.setItem("leaderboard", JSON.stringify(leaderboardData));
-}
+ 
 
-// Load data
-function loadData() {
-  let data = localStorage.getItem("leaderboard");
-  if (data) {
-    leaderboardData.splice(0, leaderboardData.length, ...JSON.parse(data));
-  }
-}
+ 
+
