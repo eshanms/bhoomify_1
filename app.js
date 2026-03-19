@@ -27,8 +27,6 @@ function login(e) {
   loadUsers();
   let name = document.getElementById("username").value;
   let pass = document.getElementById("password").value;
-  console.log("Trying login:",name,pass);
-  console.log("Users:",users);
   
   let user = users.find(u => u.name === name && u.password === pass);
 
@@ -36,7 +34,7 @@ function login(e) {
     alert("Invalid login!");
     return false;
   }
-  alert("Login function running");
+  
   localStorage.setItem("user", user.name);
   localStorage.setItem("role", user.role);
 
@@ -45,7 +43,7 @@ function login(e) {
   } else {
     window.location.href = "faculty.html";
   }
-  return false;
+  
 }
 function initStudent() {
   let name = localStorage.getItem("user");
