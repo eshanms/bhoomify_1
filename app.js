@@ -36,7 +36,7 @@ function login(e) {
     alert("Invalid login!");
     return false;
   }
-
+  alert("Login function running");
   localStorage.setItem("user", user.name);
   localStorage.setItem("role", user.role);
 
