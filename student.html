@@ -1,48 +1,37 @@
-<script>
-  if (localStorage.getItem("role") !== "student") {
-    window.location.href = "login.html";
-  }
-</script>
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Student Dashboard</title>
-  <link rel="stylesheet" href="style.css">
-</head>
 <body>
-
 <div class="container">
-  <h2>🌱 Student Dashboard</h2>
-   
-  <div class="card">
-    <h3>Welcome, <span id="userName"></span> 👋</h3>
-    <h3>Your Points: <span id="points">0</span></h3>
-  </div>
 
-  <div class="card">
-    <h3>🏆 Leaderboard</h3>
-    <ul id="leaderboard"></ul>
-  </div>
+<div class="header">🌱 BHOOMIFY</div>
 
-  <div class="card">
-    <h3>🎁 Reward Shop</h3>
-    <div id="rewards"></div>
-  </div>
+<div class="card">
+  <h3>Welcome, <span id="userName"></span> 👋</h3>
+  <h2>Points: <span id="points"></span></h2>
+</div>
+
+<div class="card">
+  <h3>🏆 Leaderboard</h3>
+  <ul id="leaderboard"></ul>
+</div>
+
+<div class="card">
+  <h3>🎁 Rewards</h3>
+  <div id="rewards"></div>
+</div>
+
+<div class="card">
+  <h3>📜 History</h3>
+  <ul id="history"></ul>
+</div>
+
+<button onclick="logout()">Logout</button>
 
 </div>
 
 <script src="app.js"></script>
 <script>
-  loadData();
-  showUser();
-  loadLeaderboard();
-  loadRewards();
+  loadUsers();
+  initStudent();
 </script>
-
 </body>
-</html>
-
-
-
 
 
