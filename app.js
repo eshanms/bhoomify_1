@@ -1,5 +1,23 @@
- // ===== USER (for demo) =====
-let currentUser = "Eshan";
+// ===== LOGIN SYSTEM =====
+function login(e) {
+  e.preventDefault();
+
+  let username = document.getElementById("username").value;
+  let role = document.getElementById("role").value;
+
+  // Save session
+  localStorage.setItem("user", username);
+  localStorage.setItem("role", role);
+
+  // Redirect
+  if (role === "student") {
+    window.location.href = "student.html";
+  } else {
+    window.location.href = "faculty.html";
+  }
+}
+// ===== USER (for demo) =====
+let currentUser = localStorage.getItem("user");
 
 // ===== Dummy Data =====
 let leaderboardData = [
