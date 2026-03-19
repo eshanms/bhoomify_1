@@ -2,20 +2,34 @@
 <html>
 <head>
   <title>Student Dashboard</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h2>Student Dashboard</h2>
+<div class="container">
+  <h2>🌱 Student Dashboard</h2>
 
-<h3>Your Points: <span id="points">0</span></h3>
+  <div class="card">
+    <h3>Your Points: <span id="points">0</span></h3>
+  </div>
 
-<h3>Leaderboard</h3>
-<ul id="leaderboard"></ul>
+  <div class="card">
+    <h3>🏆 Leaderboard</h3>
+    <ul id="leaderboard"></ul>
+  </div>
+
+  <div class="card">
+    <h3>🎁 Reward Shop</h3>
+    <div id="rewards"></div>
+  </div>
+
+</div>
 
 <script src="app.js"></script>
 <script>
+  loadData();
   loadLeaderboard();
+  loadRewards();
 </script>
 
 </body>
