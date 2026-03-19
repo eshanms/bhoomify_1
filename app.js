@@ -11,7 +11,7 @@ console.log(users);
 function loadUsers() {
   let data = localStorage.getItem("users");
   if (data) users = JSON.parse(data);
-else{
+}else{
   localStorage.setItem("users",JSON.stringify(users));
   }
 }
