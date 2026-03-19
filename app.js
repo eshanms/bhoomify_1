@@ -1,3 +1,4 @@
+alert("JS LOADED");
 // ===== USERS (DUMMY DATABASE) =====
 let users = [
   { name: "Eshan", password: "123", role: "student", points: 120, history: [] },
