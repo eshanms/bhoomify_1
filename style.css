@@ -1,22 +1,38 @@
 body {
   font-family: Arial;
-  text-align: center;
-  background-color: #f4f4f4;
+  background: #eafaf1;
+  margin: 0;
 }
 
-h1 {
+.container {
+  width: 90%;
+  max-width: 500px;
+  margin: auto;
+  text-align: center;
+}
+
+h2 {
   color: green;
 }
 
-button {
-  padding: 10px;
-  margin: 10px;
-  background-color: green;
-  color: white;
-  border: none;
+.card {
+  background: white;
+  padding: 15px;
+  margin: 15px 0;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-input, select {
-  padding: 8px;
+button {
+  padding: 8px 15px;
   margin: 5px;
+  background: green;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
 }
