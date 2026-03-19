@@ -1,30 +1,46 @@
-// ===== LOGIN SYSTEM =====
+// ===== USERS (DUMMY DATABASE) =====
+let users = [
+  { name: "Eshan", password: "123", role: "student", points: 120, history: [] },
+  { name: "Aneya", password: "123", role: "student", points: 95, history: [] },
+  { name: "Arathy", password: "123", role: "student", points: 80, history: [] },
+  { name: "Faculty1", password: "admin", role: "faculty" }
+];
+
+// Load from storage
+function loadUsers() {
+  let data = localStorage.getItem("users");
+  if (data) users = JSON.parse(data);
+}
+
+// Save users
+function saveUsers() {
+  localStorage.setItem("users", JSON.stringify(users));
+}
+
+// ===== LOGIN =====
 function login(e) {
   e.preventDefault();
 
-  let username = document.getElementById("username").value;
-  let role = document.getElementById("role").value;
+  let name = document.getElementById("username").value;
+  let pass = document.getElementById("password").value;
 
-  // Save session
-  localStorage.setItem("user", username);
-  localStorage.setItem("role", role);
+  let user = users.find(u => u.name === name && u.password === pass);
 
-  // Redirect
-  if (role === "student") {
+  if (!user) {
+    alert("Invalid login!");
+    return;
+  }
+
+  localStorage.setItem("user", user.name);
+  localStorage.setItem("role", user.role);
+
+  if (user.role === "student") {
     window.location.href = "student.html";
   } else {
     window.location.href = "faculty.html";
   }
 }
-// ===== USER (for demo) =====
-let currentUser = localStorage.getItem("user");
 
-// ===== Dummy Data =====
-let leaderboardData = [
-  { name: "Eshan", points: 120 },
-  { name: "Aneya", points: 95 },
-  { name: "Arathy", points: 80 }
-];
 
 let rewards = [
   { name: "Eco Badge", cost: 50 },
